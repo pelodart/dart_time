@@ -1,7 +1,7 @@
-name: shapes
+name: time
 version: 1.0.0
 description: >-
-  Simple demonstration of inheritance
+  Implementation of a simple class Time in Dart
 author: PeLo
 dependencies:
   sprintf: "^4.0.0"
