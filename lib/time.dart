@@ -52,6 +52,7 @@ class Time {
   int get Second => _second;
   int get Minute => _minute;
   int get Hour => _hour;
+  int get Seconds => _timeToSeconds();
 
   set Second(int value) => _second = (0 <= value && value < 60) ? value : 0;
   set Minute(int value) => _minute = (0 <= value && value < 60) ? value : 0;

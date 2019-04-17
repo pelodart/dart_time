@@ -31,7 +31,7 @@ Im Folgenden finden Sie eine Reihe von Methoden aufgelistet, die elementare Funk
 
 ### getter und setter
 
-getter und setter sind spezielle Methoden, um den - geschützten - lesenden und schreibenden Zugriff auf die relevanten Instanzvariablen eines Objekts zu ermöglichen. In unserem Beispiel bieten sich diese Methoden für die drei Instanzvariablen zur Ablage des Sekunden-, Minuten- und Stundenwerts an:
+getter und setter sind spezielle Methoden, um den - geschützten - lesenden und schreibenden Zugriff auf die relevanten Instanzvariablen eines Objekts zu ermöglichen. In unserem Beispiel bieten sich diese Methoden ``Second``, ``Minute`` und ``Hour`` für die drei Instanzvariablen zur Ablage des Sekunden-, Minuten- und Stundenwerts an. Ein weiterer getter ``Seconds`` wandelt eine Uhrzeit in Sekunden um - das Gegenstück zu diesem getter gibt es in Gestalt des Konstruktors ``Time.fromSeconds``:
 
 * ``int get Second;``
 * ``int get Minute;``
@@ -39,6 +39,7 @@ getter und setter sind spezielle Methoden, um den - geschützten - lesenden und 
 * ``set Second(int value);``
 * ``set Minute(int value);``
 * ``set Hour(int value);``
+* ``int get Seconds;``
 
 ### Operatoren
 
@@ -70,6 +71,8 @@ Alle Dart-Objekte leiten sich - direkt oder indirekt - von der universellen Basi
 Testen Sie Ihre Implementierung mit einem möglichst umfangreichen Testrahmen. Das nachfolgende Code-Fragment soll eine Anregung darstellen:
 
 ```dart
+import 'package:sprintf/sprintf.dart';
+
 import '../lib/time.dart';
 
 void main() {
@@ -78,6 +81,8 @@ void main() {
   testingDecrement();
   testingDiff();
   testingArithmeticOperators();
+  testingDiff();
+  testingTimeToSeconds();
 }
 
 void testingConstructors() {
@@ -132,4 +137,54 @@ void testingArithmeticOperators() {
   t2 -= t1;
   print(t2.toString());
 }
+
+void testingTimeToSeconds() {
+  print('Begin');
+  var start = new DateTime.now().millisecondsSinceEpoch;
+
+  for (var i = 0; i < 24 * 60 * 60; i++) {
+    Time t = Time.fromSeconds(i);
+    int seconds = t.Seconds;
+    assert(i == seconds);
+  }
+  var duration = new DateTime.now().millisecondsSinceEpoch - start;
+  print(sprintf('Done [%d msecs]', [duration]));
+}
+```
+
+**Ausgabe**:
+
+```dart
+Time: 00:00:00
+Time: 23:59:59
+Time: 23:00:59
+Time: 00:00:00
+Time: 23:59:59
+Time: 12:00:00
+Time: 23:59:56
+Time: 23:59:57
+Time: 23:59:58
+Time: 23:59:59
+Time: 00:00:00
+Time: 00:00:01
+Time: 00:00:02
+Time: 00:00:03
+Time: 00:00:04
+Time: 00:00:03
+Time: 00:00:02
+Time: 00:00:01
+Time: 00:00:00
+Time: 23:59:59
+Time: 23:59:58
+Time: 23:59:57
+Time: 23:59:59
+Time: 23:59:59
+Time: 13:00:30
+Time: 19:30:45
+Time: 19:28:45
+Time: 12:58:30
+Time: 23:59:59
+Time: 23:59:59
+Begin
+Done [5 msecs]
 ```

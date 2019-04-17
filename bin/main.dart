@@ -1,3 +1,5 @@
+import 'package:sprintf/sprintf.dart';
+
 import '../lib/time.dart';
 
 void main() {
@@ -6,6 +8,8 @@ void main() {
   testingDecrement();
   testingDiff();
   testingArithmeticOperators();
+  testingDiff();
+  testingTimeToSeconds();
 }
 
 void testingConstructors() {
@@ -59,4 +63,17 @@ void testingArithmeticOperators() {
   print(t2.toString());
   t2 -= t1;
   print(t2.toString());
+}
+
+void testingTimeToSeconds() {
+  print('Begin');
+  var start = new DateTime.now().millisecondsSinceEpoch;
+
+  for (var i = 0; i < 24 * 60 * 60; i++) {
+    Time t = Time.fromSeconds(i);
+    int seconds = t.Seconds;
+    assert(i == seconds);
+  }
+  var duration = new DateTime.now().millisecondsSinceEpoch - start;
+  print(sprintf('Done [%d msecs]', [duration]));
 }
