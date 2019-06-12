@@ -49,7 +49,6 @@ Uhrzeiten lassen sich vergleichen. In einer Programmiersprache, die das Überlad
 * ``bool operator <=(Time time);``
 * ``bool operator <(Time time);``
 * ``bool operator >=(Time time);``
-* ``set Minute(int value);``
 * ``bool operator >(Time time);``
 
 *Hinweis*: Der ``==``-Operator wird von der universellen Basisklasse ``Object`` an seine abgeleiteten Klassen vererbt. Aus diesem Grund ist dieser Operator mit der Annotation ``@override`` zu versehen und der Typ des Parameters universell als ``Object`` zu definieren - also nicht vom Typ ``Time``, wie man in diesem Beispiel meinen könnte.
