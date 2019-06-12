@@ -23,3 +23,10 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
+
+# batch files
+*.bat
+
+# executable
+bin/*.aot
+bin/*.dill
