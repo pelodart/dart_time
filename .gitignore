@@ -24,13 +24,9 @@ doc/api/
 *.js.deps
 *.js.map
 
-<<<<<<< HEAD
 # batch files
 *.bat
 
 # executable
 bin/*.aot
 bin/*.dill
-=======
-# Avoid committing generated MachineCode files (aot)
->>>>>>> 5f1e441c58bdcf8b793c35ca62b6186f1be306e6
